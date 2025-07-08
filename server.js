@@ -15,17 +15,32 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Updated CORS middleware
+// ✅ CORS Setup — must come first
+// ✅ Manual CORS headers (replace cors middleware)
+app.use((req, res, next) => {
+  const allowedOrigins = [
+    "http://localhost:5173",
+    "https://studysync-lilac-psi.vercel.app"
+  ];
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, token");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204); // Preflight request
+  }
+
+  next();
+});
 
 
-app.use(cors({
-  origin: ["http://localhost:5173", "https://studysync-lilac-psi.vercel.app"],
-  credentials: true,
-}));
-
-
-
-// ✅ Other Middleware
+// ✅ Middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 

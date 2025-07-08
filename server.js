@@ -20,7 +20,10 @@ const app = express();
 app.use((req, res, next) => {
   const allowedOrigins = [
     "http://localhost:5173",
-    "https://studysync-lilac-psi.vercel.app"
+    "https://studysync-lilac-psi.vercel.app",
+    "studysync-git-main-adesh-mishras-projects-21c6cce4.vercel.app",
+    "studysync-drgejb9fc-adesh-mishras-projects-21c6cce4.vercel.app"
+
   ];
   const origin = req.headers.origin;
 

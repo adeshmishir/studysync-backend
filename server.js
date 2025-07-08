@@ -16,8 +16,10 @@ dotenv.config();
 const app = express();
 
 // ✅ Updated CORS middleware
+
+
 app.use(cors({
-  origin: function (origin, callback) {
+  origin: (origin, callback) => {
     const allowedOrigins = [
       "http://localhost:5173",
       "https://studysync-lilac-psi.vercel.app"
@@ -32,6 +34,7 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "token"]
 }));
+
 
 // ✅ Other Middleware
 app.use(express.json({ limit: '10mb' }));

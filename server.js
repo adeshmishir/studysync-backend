@@ -18,7 +18,7 @@ const app = express();
 // ✅ Updated CORS middleware
 app.use(cors({
   origin: function (origin, callback) {
-    const allowedOrigins = ["http://localhost:5173", "https://studysync.vercel.app"];
+    const allowedOrigins = ["http://localhost:5173", "studysync-lilac-psi.vercel.app"];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
